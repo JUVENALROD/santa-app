@@ -22,6 +22,7 @@
   background: white;
   border-radius: 50%;
   filter: blur(3px);
+  animation: snowfall 5s linear infinite;
 }
 
 .snowflake-small {
