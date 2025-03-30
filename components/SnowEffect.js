@@ -3,53 +3,50 @@
 /**
  * SnowEffect Component
  * 
- * Creates a magical snowfall effect using CSS animations and React.
- * Generates multiple layers of snowflakes with varying sizes and speeds.
+ * Creates a magical snowfall effect using pure CSS animations.
+ * Uses multiple layers of snowflakes with varying sizes and speeds.
  * 
  * Location: /components/SnowEffect.js
  */
 
-import { useEffect, useState } from 'react';
-
 export default function SnowEffect() {
-  const [snowflakes, setSnowflakes] = useState([]);
-
-  useEffect(() => {
-    // Generate snowflakes
-    const generateSnowflakes = () => {
-      const flakes = [];
-      for (let i = 0; i < 100; i++) {
-        flakes.push({
-          id: i,
-          left: `${Math.random() * 100}%`,
-          animationDuration: `${Math.random() * 3 + 2}s`,
-          animationDelay: `${Math.random() * 2}s`,
-          size: Math.random() < 0.5 ? 'small' : Math.random() < 0.8 ? 'medium' : 'large'
-        });
-      }
-      return flakes;
-    };
-
-    setSnowflakes(generateSnowflakes());
-
-    // Regenerate snowflakes every 8 seconds
-    const interval = setInterval(() => {
-      setSnowflakes(generateSnowflakes());
-    }, 8000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="snowfall">
-      {snowflakes.map(flake => (
+      {/* Small snowflakes */}
+      {[...Array(50)].map((_, i) => (
         <div
-          key={flake.id}
-          className={`snowflake snowflake-${flake.size}`}
+          key={`small-${i}`}
+          className="snowflake snowflake-small"
           style={{
-            left: flake.left,
-            animationDuration: flake.animationDuration,
-            animationDelay: flake.animationDelay
+            left: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 3 + 2}s`,
+            animationDelay: `${Math.random() * 2}s`
+          }}
+        />
+      ))}
+      
+      {/* Medium snowflakes */}
+      {[...Array(30)].map((_, i) => (
+        <div
+          key={`medium-${i}`}
+          className="snowflake snowflake-medium"
+          style={{
+            left: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 3 + 2}s`,
+            animationDelay: `${Math.random() * 2}s`
+          }}
+        />
+      ))}
+      
+      {/* Large snowflakes */}
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={`large-${i}`}
+          className="snowflake snowflake-large"
+          style={{
+            left: `${Math.random() * 100}%`,
+            animationDuration: `${Math.random() * 3 + 2}s`,
+            animationDelay: `${Math.random() * 2}s`
           }}
         />
       ))}
